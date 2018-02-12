@@ -1,4 +1,4 @@
-# Python and Anaconda
+# Python and Anaconda (Opencv)
 
 ## Anaconda 是一個 all-in-one 的 Python 開發環境，對於初學者來說是個十分合適的開發環境包。Anaconda 具備了幾項特點：
 
