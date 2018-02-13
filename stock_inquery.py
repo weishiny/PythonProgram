@@ -279,11 +279,44 @@ import os
 def getNumber(pic):
     min_a = 9999999999
     min_png = None # min_png is None
+    min_png_name = None
     for png in os.listdir('alphabet'):
         ref = cv2.imread('alphabet/' + png)
         if mse(ref, pic) < min_a:
             min_a = mse(ref, pic)
             min_png = png
-    return min_png, min_a
+            # Getting the name of the file without the extension
+            min_png_name = os.path.splitext('alphabet/' + png)[0]
+            # What if the filename contains multiple dots:
+            # if there are multiple dots, splitext splits at the last one (so splitext('kitty.jpg.zip') gives ('kitty.jpg', '.zip'))
+    return min_png_name, min_png, min_a
 
 print(getNumber(pic4))
+
+# we use pandas to produce a beautiful table or excel (.xlsx, .csv, ..)
+'''
+先介紹一下Pandas是什麼，簡單來說就是把Excel的表格觀念丟到Python來，你在Excel所有的操作都可以透過Pandas的函式做簡單的處理，像是欄位的加總、分群、樞紐分析表、小計、畫折線圖、
+圓餅圖等等… 在你學會Pandas這些處理的技巧之後，加上一點程式的概念，以後就可以利用程式取代Excel做到許多自動化script的處理（比如說你可以用pandas做完資料處理，畫完圖之後，利用
+python撰寫Email小程式，再搭配一些定時的排程工具（像是linux的cron job）將圖表以及csv檔每天固定時間寄給你想要的人，無形之中你每天就可以省下許多時間，提升工作效率），另外就我
+自己的經驗，當你學會使用Python＋Pandas之後會覺得這樣的方式比起去寫Excel的巨集方便多了。
+
+Pandas主要有兩大資料結構：
+  Series 欄位(一維度)
+  DataFrame 表格(二維度)
+  1.Series：用來處理時間序列相關的資料(如感測器資料等)，主要為建立索引的一維陣列。
+  2.DataFrame：用來處理結構化(Table like)的資料，有列索引與欄標籤的二維資料集，例如關聯式資料庫、CSV 等等
+'''
+
+# 讀取 CSV File
+import pandas as pd
+df = pd.read_csv('shop_list.csv')
+print(df)
+
+# 讀取 HTML
+import pandas as pd
+dfs = pd.read_html('http://rate.bot.com.tw/xrt?Lang=zh-TW')
+type(dfs) #list
+len(dfs) #1
+dfs[0]
+
+dfs.to_csv('stockData.csv')
