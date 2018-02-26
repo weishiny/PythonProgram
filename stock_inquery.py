@@ -635,3 +635,54 @@ for id, (x, y, w, h) in enumerate(ary):
     # cv2.imwrite('%d.png'%(id), res)
     plt.imshow(res)
     plt.show()
+
+# How to create a loop from 1-9 and from a-z?
+'''
+內建函式chr, unichr, ord
+chr, unichr, ord 都是針對字元轉換的函式。
+
+chr()
+Format: chr(i), i: integer
+傳入參數int[0..255] 的ASCII code編碼，回傳對應的ASCII code字元。
+EX:
+    chr(97)
+    'a'
+
+unichr()
+Format: unichr(i), i: integer
+傳入參數Unicode編碼(包含ACSII code編碼)，回傳對應的Unicode字元。
+EX:
+    unichr(97)
+    u'a'
+
+ord()
+Format: ord(c), c: character
+傳入字元，回傳對應的Unicode字元。
+EX:
+    ord('a')
+    97
+'''
+for i in range(1,10) + [chr(x) for x in range(ord('a'), ord('z')+1)]:
+    print i
+for i in range(1,10) + [chr(x) for x in range(ord('A'), ord('Z')+1)]:
+    print i
+
+# How to add files in specific folder such as 'alphabet/'
+
+# cv2.imwrite() will not write an image in another directory if the directory does not exist. 
+# You first need to create the directory before attempting to write to it:
+'''
+import os
+dirname = 'alphabet'
+os.mkdir(dirname)
+'''
+# From here, you can either write to the directory without changing your working directory:
+'''
+cv2.imwrite(os.path.join(dirname, face_file_name), image)
+'''
+
+# Or change your working directory and omit the directory prefix, depending on your needs:
+'''
+os.chdir(dirname)
+cv2.imwrite(face_file_name, image)
+'''
