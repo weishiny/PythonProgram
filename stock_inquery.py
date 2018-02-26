@@ -320,3 +320,318 @@ len(dfs) #1
 dfs[0]
 
 dfs.to_csv('stockData.csv')
+
+'''
+How to crop image to A-Z 0-9 => ONE alphabet and number ONE picture
+'''
+
+import numpy as np
+import matplotlib.pyplot as plt
+import cv2
+
+imagealphabet = cv2.imread('BasicAtoE.png')
+plt.imshow(imagealphabet)
+plt.show()
+
+kernel = np.ones((4, 4), np.uint8)
+erosion = cv2.erode(imagealphabet, kernel, iterations = 1)
+blurred = cv2.GaussianBlur(erosion, (5, 5), 0) # 把旁邊的點作淡化的動作
+edged = cv2.Canny(blurred, 30, 150) # 偵測字的邊界
+dilation = cv2.dilate(edged, kernel, iterations = 1)
+
+plt.imshow(dilation)
+plt.show()
+
+contours, hierarchy = cv2.findContours(dilation.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+cnts = sorted([(c, cv2.boundingRect(c)[0]) for c in contours], key = lambda x: x[1])
+
+ary = []
+count = 0
+for (c, _) in cnts:
+    (x, y, w, h) = cv2.boundingRect(c)
+    if h > 50:
+        count += 1
+        print((x, y, w, h), count)
+        ary.append((x, y, w, h))
+
+fig = plt.figure()
+
+for id, (x, y, w, h) in enumerate(ary):
+    roi = dilation[y: y + h, x: x + w]
+    
+    thresh = roi.copy()
+    a = fig.add_subplot(1, len(ary), id + 1) 
+    
+    # resize image
+    res = cv2.resize(thresh, (50, 50))
+    # store file in disk folder
+    # cv2.imwrite(filename, img[, params])
+    # outfile = '%s/%s.jpg' % (self.tgtdir, self.basename)
+    # cv2.imwrite('%d.png'%(id), res)
+    plt.imshow(res)
+    plt.show()
+
+# ==============================================================
+
+imagealphabet = cv2.imread('BasicFtoJ.png')
+plt.imshow(imagealphabet)
+plt.show()
+
+kernel = np.ones((4, 4), np.uint8)
+erosion = cv2.erode(imagealphabet, kernel, iterations = 1)
+blurred = cv2.GaussianBlur(erosion, (5, 5), 0) # 把旁邊的點作淡化的動作
+edged = cv2.Canny(blurred, 30, 150) # 偵測字的邊界
+dilation = cv2.dilate(edged, kernel, iterations = 1)
+
+plt.imshow(dilation)
+plt.show()
+
+contours, hierarchy = cv2.findContours(dilation.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+cnts = sorted([(c, cv2.boundingRect(c)[0]) for c in contours], key = lambda x: x[1])
+
+ary = []
+count = 0
+for (c, _) in cnts:
+    (x, y, w, h) = cv2.boundingRect(c)
+    if h > 50:
+        count += 1
+        print((x, y, w, h), count)
+        ary.append((x, y, w, h))
+        
+fig = plt.figure()
+for id, (x, y, w, h) in enumerate(ary):
+    roi = dilation[y: y + h, x: x + w]
+    
+    thresh = roi.copy()
+    a = fig.add_subplot(1, len(ary), id + 1) 
+    
+    # resize image
+    res = cv2.resize(thresh, (50, 50))
+    # store file in disk folder
+    # cv2.imwrite(filename, img[, params])
+    # outfile = '%s/%s.jpg' % (self.tgtdir, self.basename)
+    # cv2.imwrite('%d.png'%(id), res)
+    plt.imshow(res)
+    plt.show()
+
+# ==============================================================
+
+imagealphabet = cv2.imread('BasicKtoO.png')
+plt.imshow(imagealphabet)
+plt.show()
+
+kernel = np.ones((4, 4), np.uint8)
+erosion = cv2.erode(imagealphabet, kernel, iterations = 1)
+blurred = cv2.GaussianBlur(erosion, (5, 5), 0) # 把旁邊的點作淡化的動作
+edged = cv2.Canny(blurred, 30, 150) # 偵測字的邊界
+dilation = cv2.dilate(edged, kernel, iterations = 1)
+
+plt.imshow(dilation)
+plt.show()
+
+contours, hierarchy = cv2.findContours(dilation.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+cnts = sorted([(c, cv2.boundingRect(c)[0]) for c in contours], key = lambda x: x[1])
+
+ary = []
+count = 0
+for (c, _) in cnts:
+    (x, y, w, h) = cv2.boundingRect(c)
+    if h > 50:
+        count += 1
+        print((x, y, w, h), count)
+        ary.append((x, y, w, h))
+        
+fig = plt.figure()
+for id, (x, y, w, h) in enumerate(ary):
+    roi = dilation[y: y + h, x: x + w]
+    
+    thresh = roi.copy()
+    a = fig.add_subplot(1, len(ary), id + 1) 
+    
+    # resize image
+    res = cv2.resize(thresh, (50, 50))
+    # store file in disk folder
+    # cv2.imwrite(filename, img[, params])
+    # outfile = '%s/%s.jpg' % (self.tgtdir, self.basename)
+    # cv2.imwrite('%d.png'%(id), res)
+    plt.imshow(res)
+    plt.show()
+
+# ==============================================================
+
+imagealphabet = cv2.imread('BasicPtoT.png')
+plt.imshow(imagealphabet)
+plt.show()
+
+kernel = np.ones((4, 4), np.uint8)
+erosion = cv2.erode(imagealphabet, kernel, iterations = 1)
+blurred = cv2.GaussianBlur(erosion, (5, 5), 0) # 把旁邊的點作淡化的動作
+edged = cv2.Canny(blurred, 30, 150) # 偵測字的邊界
+dilation = cv2.dilate(edged, kernel, iterations = 1)
+
+plt.imshow(dilation)
+plt.show()
+
+contours, hierarchy = cv2.findContours(dilation.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+cnts = sorted([(c, cv2.boundingRect(c)[0]) for c in contours], key = lambda x: x[1])
+
+ary = []
+count = 0
+for (c, _) in cnts:
+    (x, y, w, h) = cv2.boundingRect(c)
+    if h > 51:
+        count += 1
+        print((x, y, w, h), count)
+        ary.append((x, y, w, h))
+        
+fig = plt.figure()
+for id, (x, y, w, h) in enumerate(ary):
+    roi = dilation[y: y + h, x: x + w]
+    
+    thresh = roi.copy()
+    a = fig.add_subplot(1, len(ary), id + 1) 
+    
+    # resize image
+    res = cv2.resize(thresh, (50, 50))
+    # store file in disk folder
+    # cv2.imwrite(filename, img[, params])
+    # outfile = '%s/%s.jpg' % (self.tgtdir, self.basename)
+    # cv2.imwrite('%d.png'%(id), res)
+    plt.imshow(res)
+    plt.show()
+
+# ==============================================================
+
+imagealphabet = cv2.imread('BasicUtoY.png')
+plt.imshow(imagealphabet)
+plt.show()
+
+kernel = np.ones((4, 4), np.uint8)
+erosion = cv2.erode(imagealphabet, kernel, iterations = 1)
+blurred = cv2.GaussianBlur(erosion, (5, 5), 0) # 把旁邊的點作淡化的動作
+edged = cv2.Canny(blurred, 30, 150) # 偵測字的邊界
+dilation = cv2.dilate(edged, kernel, iterations = 1)
+
+plt.imshow(dilation)
+plt.show()
+
+contours, hierarchy = cv2.findContours(dilation.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+cnts = sorted([(c, cv2.boundingRect(c)[0]) for c in contours], key = lambda x: x[1])
+
+ary = []
+count = 0
+for (c, _) in cnts:
+    (x, y, w, h) = cv2.boundingRect(c)
+    if h > 50:
+        count += 1
+        print((x, y, w, h), count)
+        ary.append((x, y, w, h))
+        
+fig = plt.figure()
+for id, (x, y, w, h) in enumerate(ary):
+    roi = dilation[y: y + h, x: x + w]
+    
+    thresh = roi.copy()
+    a = fig.add_subplot(1, len(ary), id + 1) 
+    
+    # resize image
+    res = cv2.resize(thresh, (50, 50))
+    # store file in disk folder
+    # cv2.imwrite(filename, img[, params])
+    # outfile = '%s/%s.jpg' % (self.tgtdir, self.basename)
+    # cv2.imwrite('%d.png'%(id), res)
+    plt.imshow(res)
+    plt.show()
+
+# ==============================================================
+
+imagealphabet = cv2.imread('BasicZto4.png')
+plt.imshow(imagealphabet)
+plt.show()
+
+kernel = np.ones((4, 4), np.uint8)
+erosion = cv2.erode(imagealphabet, kernel, iterations = 1)
+blurred = cv2.GaussianBlur(erosion, (5, 5), 0) # 把旁邊的點作淡化的動作
+edged = cv2.Canny(blurred, 30, 150) # 偵測字的邊界
+dilation = cv2.dilate(edged, kernel, iterations = 1)
+
+plt.imshow(dilation)
+plt.show()
+
+contours, hierarchy = cv2.findContours(dilation.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+cnts = sorted([(c, cv2.boundingRect(c)[0]) for c in contours], key = lambda x: x[1])
+
+ary = []
+count = 0
+for (c, _) in cnts:
+    (x, y, w, h) = cv2.boundingRect(c)
+    if h > 50:
+        count += 1
+        print((x, y, w, h), count)
+        ary.append((x, y, w, h))
+        
+fig = plt.figure()
+for id, (x, y, w, h) in enumerate(ary):
+    roi = dilation[y: y + h, x: x + w]
+    
+    thresh = roi.copy()
+    a = fig.add_subplot(1, len(ary), id + 1) 
+    
+    # resize image
+    res = cv2.resize(thresh, (50, 50))
+    # store file in disk folder
+    # cv2.imwrite(filename, img[, params])
+    # outfile = '%s/%s.jpg' % (self.tgtdir, self.basename)
+    # cv2.imwrite('%d.png'%(id), res)
+    plt.imshow(res)
+    plt.show()
+
+# ==============================================================
+
+imagealphabet = cv2.imread('Basic5to9.png')
+plt.imshow(imagealphabet)
+plt.show()
+
+kernel = np.ones((4, 4), np.uint8)
+erosion = cv2.erode(imagealphabet, kernel, iterations = 1)
+blurred = cv2.GaussianBlur(erosion, (5, 5), 0) # 把旁邊的點作淡化的動作
+edged = cv2.Canny(blurred, 30, 150) # 偵測字的邊界
+dilation = cv2.dilate(edged, kernel, iterations = 1)
+
+plt.imshow(dilation)
+plt.show()
+
+contours, hierarchy = cv2.findContours(dilation.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+cnts = sorted([(c, cv2.boundingRect(c)[0]) for c in contours], key = lambda x: x[1])
+
+ary = []
+count = 0
+for (c, _) in cnts:
+    (x, y, w, h) = cv2.boundingRect(c)
+    if h > 50:
+        count += 1
+        print((x, y, w, h), count)
+        ary.append((x, y, w, h))
+        
+fig = plt.figure()
+for id, (x, y, w, h) in enumerate(ary):
+    roi = dilation[y: y + h, x: x + w]
+    
+    thresh = roi.copy()
+    a = fig.add_subplot(1, len(ary), id + 1) 
+    
+    # resize image
+    res = cv2.resize(thresh, (50, 50))
+    # store file in disk folder
+    # cv2.imwrite(filename, img[, params])
+    # outfile = '%s/%s.jpg' % (self.tgtdir, self.basename)
+    # cv2.imwrite('%d.png'%(id), res)
+    plt.imshow(res)
+    plt.show()
