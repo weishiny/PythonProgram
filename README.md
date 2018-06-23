@@ -84,3 +84,11 @@ anaconda search opencv
 
 conda install -c https://conda.anaconda.org/menpo opencv
 ```
+
+## execute python
+
+```
+1. type *jupyter notebook* in Terminal (cmd)
+2. type *python abc.py* in Terminal (cmd)
+
+```
