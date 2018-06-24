@@ -92,3 +92,13 @@ conda install -c https://conda.anaconda.org/menpo opencv
 2. type *python abc.py* in Terminal (cmd)
 
 ```
+
+## install library for BasicPerspectiveforStock (please use Python3)
+
+```
+conda install -c anaconda requests
+conda install -c anaconda pandas
+conda install -c anaconda numpy
+conda install -c anaconda html5lib
+conda install -c anaconda lxml
+```
