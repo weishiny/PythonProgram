@@ -104,4 +104,5 @@ conda install -c anaconda lxml
 conda install -c anaconda openpyxl
 conda install -c anaconda seaborn
 conda install -c conda-forge matplotlib
+conda install -c anaconda pywin32
 ```
